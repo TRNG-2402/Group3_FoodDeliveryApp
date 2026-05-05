@@ -7,4 +7,5 @@ public class Restaurant
     public string Address { get; set; }
     public string Phone { get; set; }
     public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>();
+    public List<Order> Orders { get; set; } = new List<Order>();
 }
