@@ -6,5 +6,9 @@ namespace FoodDeliveryApp.API.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-   
+    WeatherForecastController()
+    {
+        // Delete this file.
+        Console.WriteLine("Test API");
+    }
 }
