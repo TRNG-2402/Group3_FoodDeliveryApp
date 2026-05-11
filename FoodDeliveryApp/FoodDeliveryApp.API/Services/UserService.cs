@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 public interface IUserService
 {
-    public Task<ActionResult<User>> GetUserByEmail(string email);    
+    public Task<User> GetUserByEmail(string email);    
 }
 
-public class UserService
+public class UserService : IUserService
 {
     private readonly IUserRepo _userRepo;
 

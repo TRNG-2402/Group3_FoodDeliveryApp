@@ -1,8 +1,15 @@
 using FoodDeliveryApp.API.Data;
 using FoodDeliveryApp.API.Models;
-using Microsoft.AspNetCore.Mvc;
 
-public class RestaurantService
+public interface IRestaurantService
+{
+    public Task<List<Restaurant>> GetAllRestaurant();
+    public Task<Restaurant?> GetRestaurantById(int id);
+    public Task<Restaurant> CreateRestaurant(Restaurant restaurant);
+    public Task<Restaurant> UpdateRestaurant(Restaurant restaurant);
+    public Task<Restaurant> DeleteRestaurant(Restaurant restaurant);
+}
+public class RestaurantService : IRestaurantService
 {
     public readonly IRestaurantRepo _restaurantRepo;
 
