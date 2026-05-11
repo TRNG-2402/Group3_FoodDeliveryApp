@@ -1,6 +1,7 @@
 using FoodDeliveryApp.API.Data;
 using FoodDeliveryApp.API.Models;
-using Microsoft.AspNetCore.Mvc;
+
+namespace FoodDeliveryApp.API.Services;
 
 public interface IUserService
 {

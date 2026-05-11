@@ -1,6 +1,8 @@
 using FoodDeliveryApp.API.Data;
 using FoodDeliveryApp.API.Models;
 
+namespace FoodDeliveryApp.API.Services;
+
 public interface IMenuItemService
 {
     public Task<MenuItem?> GetMenuItemById(int id);
