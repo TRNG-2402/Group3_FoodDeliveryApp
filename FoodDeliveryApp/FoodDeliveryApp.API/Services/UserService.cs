@@ -1,0 +1,25 @@
+using FoodDeliveryApp.API.Data;
+using FoodDeliveryApp.API.Models;
+using Microsoft.AspNetCore.Mvc;
+
+public interface IUserService
+{
+    public Task<ActionResult<User>> GetUserByEmail(string email);    
+}
+
+public class UserService
+{
+    private readonly IUserRepo _userRepo;
+
+    public UserService(IUserRepo userRepo)
+    {
+        _userRepo = userRepo;
+    }
+
+    async public Task<User> GetUserByEmail(string email)
+    {
+        // Might need to check if customer exist first
+        User user = await _userRepo.GetByEmailAsync(email);
+        return user;
+    }
+}
