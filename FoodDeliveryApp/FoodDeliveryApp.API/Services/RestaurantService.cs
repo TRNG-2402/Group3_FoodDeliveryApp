@@ -13,7 +13,7 @@ public interface IRestaurantService
 }
 public class RestaurantService : IRestaurantService
 {
-    public readonly IRestaurantRepo _restaurantRepo;
+    private readonly IRestaurantRepo _restaurantRepo;
 
     public RestaurantService(IRestaurantRepo restaurantRepo)
     {

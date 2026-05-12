@@ -18,7 +18,7 @@ public class RestaurantRepo : IRestaurantRepo
     }
     public async Task<Restaurant?> GetRestaurantByIdAsync(int id)
     {
-        return await _context.Restaurants.FindAsync(id);
+        return await _context.Restaurants.Include(r => r.MenuItems).FirstOrDefaultAsync(r => r.RestaurantId == id);
     }
     public async Task<Restaurant> CreateRestaurantAsync(Restaurant restaurant)
     {

@@ -5,7 +5,9 @@ namespace FoodDeliveryApp.API.Services;
 
 public interface IUserService
 {
-    public Task<User> GetUserByEmail(string email);    
+    public Task<User?> GetUserByEmail(string email);
+    public Task<User?> GetUserById(int id);
+    public Task<User> CreateUser(User user);
 }
 
 public class UserService : IUserService
@@ -17,10 +19,12 @@ public class UserService : IUserService
         _userRepo = userRepo;
     }
 
-    async public Task<User> GetUserByEmail(string email)
-    {
-        // Might need to check if customer exist first
-        User user = await _userRepo.GetByEmailAsync(email);
-        return user;
-    }
+    async public Task<User?> GetUserByEmail(string email) =>
+        await _userRepo.GetByEmailAsync(email);
+
+    async public Task<User?> GetUserById(int id) =>
+        await _userRepo.GetUserByIdAsync(id);
+
+    async public Task<User> CreateUser(User user) =>
+        await _userRepo.CreateUserAsync(user);
 }
