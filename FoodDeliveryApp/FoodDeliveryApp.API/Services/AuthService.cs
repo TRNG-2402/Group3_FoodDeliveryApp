@@ -35,9 +35,9 @@ public class AuthService : IAuthService
         {
             user = new Customer
             {
-                Name = dto.Name,
-                Email = dto.Email,
-                Phone = dto.Phone,
+                Name = dto.Name!,
+                Email = dto.Email!,
+                Phone = dto.Phone!,
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
                 Address = dto.Address!
             };
@@ -46,9 +46,9 @@ public class AuthService : IAuthService
         {
             user = new Driver
             {
-                Name = dto.Name,
-                Email = dto.Email,
-                Phone = dto.Phone,
+                Name = dto.Name!,
+                Email = dto.Email!,
+                Phone = dto.Phone!,
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
                 VehicleType = dto.VehicleType!,
                 MoneyEarned = 0

@@ -33,9 +33,9 @@ public class RestaurantController : ControllerBase
     {
         var restaurant = new Restaurant
         {
-            Name = dto.Name,
-            Address = dto.Address,
-            Phone = dto.Phone
+            Name = dto.Name!,
+            Address = dto.Address!,
+            Phone = dto.Phone!
         };
 
         var created = await _restaurantService.CreateRestaurant(restaurant);
@@ -48,9 +48,9 @@ public class RestaurantController : ControllerBase
         var restaurant = await _restaurantService.GetRestaurantById(id);
         if (restaurant == null) return NotFound();
 
-        restaurant.Name = dto.Name;
-        restaurant.Address = dto.Address;
-        restaurant.Phone = dto.Phone;
+        restaurant.Name = dto.Name!;
+        restaurant.Address = dto.Address!;
+        restaurant.Phone = dto.Phone!;
 
         return Ok(await _restaurantService.UpdateRestaurant(restaurant));
     }
