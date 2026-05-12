@@ -14,8 +14,7 @@ public class OrderRepo : IOrderRepo
 
     public async Task<List<Order>> GetAllOrdersAsync()
     {
-        List<Order> result = await _context.Orders.ToListAsync();
-        return result;
+        return await _context.Orders.Include(o => o.OrderItems).ToListAsync();
     }
 
     public async Task<Order> CreateOrderAsync(Order order)
@@ -38,6 +37,16 @@ public class OrderRepo : IOrderRepo
     }
     public async Task<Order?> GetOrderByIdAsync(int id)
     {
-        return await _context.Orders.FindAsync(id);
+        return await _context.Orders.Include(o => o.OrderItems).FirstOrDefaultAsync(o => o.OrderId == id);
+    }
+
+    public async Task<List<Order>> GetOrdersByCustomerIdAsync(int customerId)
+    {
+        return await _context.Orders.Include(o => o.OrderItems).Where(o => o.CustomerId == customerId).ToListAsync();
+    }
+
+    public async Task<List<Order>> GetOrdersByDriverIdAsync(int driverId)
+    {
+        return await _context.Orders.Include(o => o.OrderItems).Where(o => o.DriverId == driverId).ToListAsync();
     }
 }
