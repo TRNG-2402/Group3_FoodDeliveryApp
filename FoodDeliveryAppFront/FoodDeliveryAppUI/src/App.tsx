@@ -1,4 +1,4 @@
-import './App.css'
+import { Button } from "./Components/Button/Button"
 
 function App() {
   return (
@@ -6,7 +6,8 @@ function App() {
       <section id="center">
         Turbo Feast
       </section>
-
+      {/*Testing only; remove when used*/}
+      <Button className={"buttonMedium"}>Test Button</Button>
     </>
   )
 }

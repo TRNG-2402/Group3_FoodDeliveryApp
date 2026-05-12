@@ -1,0 +1,13 @@
+.buttonMedium {
+    background-color: #FD4000;
+    color: #FFF;
+    width: 250px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+}
+
+.buttonMedium:hover {
+    background-color: #fd1100;
+    cursor: pointer;
+}
