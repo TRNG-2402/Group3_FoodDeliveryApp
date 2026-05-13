@@ -18,9 +18,10 @@ interface ISignUpView {
     handleSignUp: () => void;
     userInfo: IUserInfo;
     setUserInfo: Dispatch<SetStateAction<IUserInfo>>;
+    error?: string;
 }
 
-export const SignUpView = ({ handleSignUp, setUserInfo, userInfo }: ISignUpView) => {
+export const SignUpView = ({ handleSignUp, setUserInfo, userInfo, error }: ISignUpView) => {
     return (
         <div className="signUpPage">
             <div className="signUpCard">
@@ -33,6 +34,10 @@ export const SignUpView = ({ handleSignUp, setUserInfo, userInfo }: ISignUpView)
                 <p className="signUpSubtitle">Sign up to get started</p>
 
                 <div className="signUpForm">
+                    {
+                        error &&  <div className="error-message">{error}</div>
+                    }
+
                     <div style={{ display: "flex", justifyContent: "space-evenly" }}>
                         <label style={{ display: "flex", alignItems: "center", gap: "8px", color: "#555" }}>
                             <input

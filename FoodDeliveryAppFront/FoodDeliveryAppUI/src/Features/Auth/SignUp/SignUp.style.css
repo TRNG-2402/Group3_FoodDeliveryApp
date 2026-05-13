@@ -109,3 +109,13 @@
 .custom-radio:checked::before {
   transform: scale(1);
 }
+
+.error-message {
+  color: #d32f2f;
+  background-color: #fdecea;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-size: 0.875rem;
+  border: 1px solid #d32f2f;
+}

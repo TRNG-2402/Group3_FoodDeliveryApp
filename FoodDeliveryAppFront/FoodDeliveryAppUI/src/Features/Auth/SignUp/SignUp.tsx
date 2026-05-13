@@ -10,24 +10,23 @@ const emptyUser: IUserInfo = {
 
 export const SignUp = () => {
     const [userInfo, setUserInfo] = useState<IUserInfo>(emptyUser);
+    const [error, setError] = useState<string>("");
 
     const handleSignUp = () => {
         const { name, email, phone, password, userType, address, vehicleType } = userInfo;
         const body = { name, email, phone, password, userType, address, vehicleType };
 
-        try {
-            api.post("auth/register", body)
-            .then(r => console.log(r));
-        } catch (error) {
-            console.log(error);
-            alert("There's an error. Try again.");
-        }
-
-    };
+        api.post("auth/register", body)
+            //  .then(r => console.log(r))
+            .catch(e => {
+                setError(e?.response?.data);
+            });
+    }
 
     return <SignUpView
         handleSignUp={handleSignUp}
         userInfo={userInfo}
         setUserInfo={setUserInfo}
+        error={error}
     />;
 };
