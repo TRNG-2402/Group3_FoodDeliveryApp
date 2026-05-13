@@ -3,7 +3,8 @@ import { Login } from "./Features/Auth/Login/Login";
 import { SignUp } from "./Features/Auth/SignUp/SignUp";
 import "./App.css";
 
-function App() {
+function App()
+{
   return (
     <BrowserRouter>
       <Routes>
