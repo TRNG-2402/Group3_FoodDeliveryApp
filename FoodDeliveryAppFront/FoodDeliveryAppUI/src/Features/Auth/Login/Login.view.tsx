@@ -4,14 +4,19 @@ import { Link } from "react-router-dom";
 import { MdFastfood } from "react-icons/md";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-
+import type { Dispatch, SetStateAction } from "react";
 import "./Login.style.css";
 
 interface ILoginView {
     handleLogin: () => void;
+    email: string;
+    setEmail: Dispatch<SetStateAction<string>>;
+    password: string;
+    setPassword: Dispatch<SetStateAction<string>>;
+    error?: string;
 }
 
-export const LoginView = ({ handleLogin }: ILoginView) => {
+export const LoginView = ({ handleLogin, email, setEmail, password, setPassword, error }: ILoginView) => {
     return (
         <div className="loginPage">
 
@@ -31,21 +36,25 @@ export const LoginView = ({ handleLogin }: ILoginView) => {
                 </p>
 
                 <div className="loginForm">
+                    {error && <div className="error-message">{error}</div>}
+
                     <Input
                         type="email"
                         placeholder="Email"
                         icon={<MdOutlineEmail />}
+                        value={email}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                     />
 
                     <Input
                         type="password"
                         placeholder="Password"
                         icon={<RiLockPasswordLine />}
+                        value={password}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                     />
 
-                    <Button
-                        className="buttonPrimary"
-                    >
+                    <Button className="buttonPrimary" onClick={handleLogin}>
                         Login
                     </Button>
 
