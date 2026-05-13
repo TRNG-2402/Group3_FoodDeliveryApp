@@ -22,7 +22,8 @@ export const SignUp = () => {
         const validationPassed = validation(userInfo);
 
         if (validationPassed) api.post("auth/register", body)
-            .then(() => {
+            .then((response) => {
+                localStorage.setItem("token", response.data.token);
                 if (userInfo.userType === "customer") navigate("/customer");
                 else if (userInfo.userType === "driver") navigate("/driver");
             })
