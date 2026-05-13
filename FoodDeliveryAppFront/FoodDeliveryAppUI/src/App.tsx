@@ -1,26 +1,18 @@
-import { Button } from "./Components/Button/Button"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Login } from "./Features/Auth/Login/Login";
+import { SignUp } from "./Features/Auth/SignUp/SignUp";
+import "./App.css";
 
 function App() {
   return (
-    <>
-      <section id="center">
-        Turbo Feast
-      </section>
-      {/*Testing only; remove when used*/}
-      <Button className="button button-orange" onClick={() => {
-        fetch("https://dog.ceo/api/breeds/image/random")
-          .then(res => console.log(res.body));
-      }}>Button Orange</Button>
-      <Button
-        className="button button-white" onClick={() => { }}
-        customStyle={{ margin: "10px" }}
-      >Button White</Button>
-      <Button
-        className="button button-orange button-long"
-        onClick={() => { }}
-      >Button Long</Button>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
+  );
+
 }
 
-export default App
+export default App;
