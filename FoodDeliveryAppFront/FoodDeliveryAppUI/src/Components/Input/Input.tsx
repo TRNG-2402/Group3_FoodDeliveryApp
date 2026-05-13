@@ -2,12 +2,13 @@ import { useState, type Dispatch, type ReactElement } from 'react';
 import './Input.style.css';
 
 interface IInput {
-    type: "Password" | "Name" | "Username" | "Email" | "Phone" | "Search";
+    type: "Password" | "Name" | "Username" | "Email" | "Phone" | "Search" | "Price";
     setValue: Dispatch<string>;
     customStyle?: object;
+    size?: "large" | "medium" | "small"
 }
 
-export const Input = ({ type, setValue, customStyle }: IInput) => {
+export const Input = ({ type, setValue, customStyle, size }: IInput) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const toggleVisibility = () => {
@@ -74,14 +75,39 @@ export const Input = ({ type, setValue, customStyle }: IInput) => {
                 </svg>
             </span>
                 break;
+            case "Price": icon = <span className="icon-prefix">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#808080"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg >
+            </span>
+                break;
             default: icon = <></>;
         }
         return icon;
+    }
 
+    const getInputSize = (size: string | undefined) => {
+        switch (size) {
+            case "large": return "input-large";
+            case "medium": return "input-medium";
+            case "small": return "input-small";
+            default : return "input-medium";
+        }
     }
 
     return (
-        <div className="input-wrapper" style={customStyle}>
+        <div className={`input-wrapper ${getInputSize(size)}`} style={customStyle}>
             {
                 getIcon(type)
             }

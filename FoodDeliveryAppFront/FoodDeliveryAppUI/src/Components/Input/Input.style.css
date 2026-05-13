@@ -1,18 +1,27 @@
-/* Container to keep icons relative to the input */
 .input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
-  max-width: 350px;
 }
 
-/* Matching the style of image_80b476.png */
+.input-medium {
+    max-width: 350px;
+}
+
+.input-small {
+    max-width: 150px;
+}
+
+.input-large {
+    max-width: 500px;
+}
+
 .text-input {
   width: 100%;
-  padding: 12px 40px; /* Space for both left and right icons */
+  padding: 12px 40px; 
   font-size: 16px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px; /* Soft rounded corners */
+  border: 1px solid #b6c4d7df;
+  border-radius: 8px;
   outline: none;
   color: #1a202c;
   transition: border-color 0.2s ease;
@@ -24,26 +33,24 @@
 
 /* Subtle focus state */
 .text-input:focus {
-  border-color: #3182ce;
+  border-color: #d86e1d;
 }
 
-/* Left Icon Positioning */
 .icon-prefix {
   position: absolute;
   left: 12px;
   display: flex;
   color: #718096;
-  pointer-events: none; /* Clicking icon focuses the input below */
+  pointer-events: none; 
 }
 
-/* Right Icon Button Styling */
 .icon-suffix {
   position: absolute;
   right: 12px;
   display: flex;
   background: transparent;
   border: none;
-  color: #718096;
+  color: #101418;
   cursor: pointer;
   padding: 0;
   transition: color 0.2s ease;

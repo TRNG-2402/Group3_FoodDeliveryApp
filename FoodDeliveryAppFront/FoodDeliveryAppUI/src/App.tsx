@@ -11,12 +11,13 @@ function App() {
       </section>
       {/*Testing only; remove when used*/}
       <Button className={"buttonMedium"}>Test Button</Button>
-      <Input type={"Username"} setValue={setValue} customStyle={{ margin: "10px" }} />
+      <Input type={"Username"} setValue={setValue} customStyle={{ margin: "10px" }} size="large" />
       <Input type={"Password"} setValue={setValue} customStyle={{ margin: "10px" }} />
       <Input type={"Name"} setValue={setValue} customStyle={{ margin: "10px" }} />
       <Input type={"Email"} setValue={setValue} customStyle={{ margin: "10px" }} />
       <Input type={"Phone"} setValue={setValue} customStyle={{ margin: "10px" }} />
       <Input type={"Search"} setValue={setValue} customStyle={{ margin: "10px" }} />
+      <Input type={"Price"} setValue={setValue} customStyle={{ margin: "10px" }} size="small" />
       <>{value}</>
     </>
   )
