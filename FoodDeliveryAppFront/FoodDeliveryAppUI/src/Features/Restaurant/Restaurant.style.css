@@ -1,0 +1,80 @@
+.restaurantsPage {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+.restaurantsMain {
+    flex: 1;
+    min-width: 0;
+    padding: 32px 40px;
+    box-sizing: border-box;
+}
+
+.restaurantsHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.restaurantsSection {
+    max-width: 900px;
+}
+
+.restaurantsSection h2 {
+    font-size: 22px;
+    margin-bottom: 18px;
+}
+
+.restaurantsList {
+    width: 100%;
+    border: 1px solid #eeeeee;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.deliveryBox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.searchBox {
+    flex: 1;
+    min-width: 0;
+    max-width: 650px;
+    height: 52px;
+    background-color: #f7f7f7;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 18px;
+    box-sizing: border-box;
+}
+
+.searchBox input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 15px;
+}
+
+.filterButton {
+    width: 52px;
+    min-width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 12px;
+    background-color: #f7f7f7;
+    font-size: 22px;
+    cursor: pointer;
+}
