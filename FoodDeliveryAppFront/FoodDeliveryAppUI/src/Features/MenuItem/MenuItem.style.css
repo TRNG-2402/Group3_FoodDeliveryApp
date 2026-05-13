@@ -1,0 +1,151 @@
+.menuItemToast {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    z-index: 1000;
+    animation: menuItemToastFade 3s ease forwards;
+}
+
+.menuItemToast--success {
+    background-color: #2e7d32;
+}
+
+.menuItemToast--error {
+    background-color: #c62828;
+}
+
+@keyframes menuItemToastFade {
+    0%   { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+    15%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+    75%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.menuItemPage {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+
+.menuItemCard {
+    width: 100%;
+    max-width: 480px;
+    background-color: white;
+    padding: 28px 24px;
+    border-radius: 18px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.menuItemTitle {
+    color: #fd4000;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.menuItemForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.menuItemField {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menuItemLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.menuItemInputWrapper {
+    position: relative;
+    width: 100%;
+    height: 45px;
+}
+
+.menuItemIcon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9b9b9b;
+    font-size: 18px;
+}
+
+.menuItemInput {
+    width: 100%;
+    height: 45px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding-left: 42px;
+    padding-right: 12px;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.menuItemInput:focus {
+    border-color: #fd4000;
+}
+
+.menuItemTextareaWrapper {
+    height: auto;
+}
+
+.menuItemTextareaIcon {
+    top: 14px;
+    transform: none;
+}
+
+.menuItemTextarea {
+    width: 100%;
+    min-height: 90px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 10px 12px 10px 42px;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.menuItemTextarea:focus {
+    border-color: #fd4000;
+}
+
+.menuItemPriceWrapper {
+    max-width: 200px;
+}
+
+.menuItemHint {
+    font-size: 12px;
+    color: #9b9b9b;
+}
+
+.menuItemActions {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.menuItemSaveBtn {
+    flex: 2;
+}
+
+.menuItemClearBtn {
+    flex: 1;
+}
