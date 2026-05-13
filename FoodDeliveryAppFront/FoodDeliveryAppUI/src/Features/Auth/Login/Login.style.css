@@ -1,0 +1,80 @@
+.loginPage {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at center,
+            #ff6b35 0%,
+            #ff8c5a 28%,
+            #ffb08a 58%,
+            #ffc9ae 78%,
+            #ffdcca 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginCard {
+    width: 100%;
+    max-width: 420px;
+    background-color: white;
+    padding: 32px 24px;
+    border-radius: 18px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.loginLogoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.loginLogoContainer p {
+    font-size: 10px;
+    color: #fd4000;
+    font-weight: 700;
+}
+
+.loginLogo {
+    text-align: center;
+    color: #fd4000;
+    font-size: 30px;
+}
+
+.loginTitle {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.loginText {
+    text-align: center;
+    color: #777;
+    margin-bottom: 24px;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.loginBottomText {
+    text-align: center;
+    margin-top: 18px;
+    color: #777;
+}
+
+.loginBottomText a {
+    text-decoration: none;
+    color: #fd4000;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 800px) {
+    .loginCard {
+        width: 80% !important;
+    }
+
+}

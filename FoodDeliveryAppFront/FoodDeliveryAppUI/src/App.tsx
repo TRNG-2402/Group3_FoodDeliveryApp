@@ -1,15 +1,17 @@
-import { Button } from "./Components/Button/Button"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Login } from "./Features/Auth/Login/Login";
+import { SignUp } from "./Features/Auth/SignUp/SignUp";
+import "./App.css";
 
 function App() {
   return (
-    <>
-      <section id="center">
-        Turbo Feast
-      </section>
-      {/*Testing only; remove when used*/}
-      <Button className={"buttonMedium"}>Test Button</Button>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
