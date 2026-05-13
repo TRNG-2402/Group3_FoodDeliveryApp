@@ -1,0 +1,81 @@
+.signUpPage {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(circle at center,
+            #ff6b35 0%,
+            #ff8c5a 28%,
+            #ffb08a 58%,
+            #ffc9ae 78%,
+            #ffdcca 100%);
+
+    padding: 20px;
+}
+
+.signUpCard {
+    width: 100%;
+    max-width: 420px;
+    background-color: white;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.signUpTitle {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.signUpSubtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.signUpForm {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.signUpText {
+    text-align: center;
+    margin-top: 20px;
+    color: #555;
+}
+
+.termsRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 13px;
+    color: #555;
+
+    margin-top: 4px;
+}
+
+.termsRow input {
+    width: 16px;
+    height: 16px;
+    accent-color: #fd4000;
+
+    cursor: pointer;
+}
+
+.termsLink {
+    color: #fd4000;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.signUpLink {
+    color: #fd4000;
+    font-weight: 600;
+    text-decoration: none;
+}
