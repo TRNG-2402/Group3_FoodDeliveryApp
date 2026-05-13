@@ -66,7 +66,7 @@ public class OrderController : ControllerBase
         var order = await _orderService.GetOrderById(id);
         if (order == null) return NotFound();
 
-        order.Status = dto.Status;
+        order.Status = dto.Status!;
         order.DriverId = dto.DriverId;
 
         return Ok(await _orderService.UpdateOrder(order));

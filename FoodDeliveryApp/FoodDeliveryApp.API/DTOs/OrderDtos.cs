@@ -16,6 +16,6 @@ public class CreateOrderItemDto
 
 public class UpdateOrderDto
 {
-    public string Status { get; set; }
+    public string? Status { get; set; }
     public int DriverId { get; set; }
 }

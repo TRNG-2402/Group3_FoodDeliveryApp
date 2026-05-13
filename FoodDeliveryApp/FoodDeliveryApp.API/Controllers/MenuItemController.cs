@@ -34,10 +34,10 @@ public class MenuItemController : ControllerBase
         var menuItem = new MenuItem
         {
             RestaurantId = dto.RestaurantId,
-            Name = dto.Name,
+            Name = dto.Name!,
             Price = dto.Price,
-            Description = dto.Description,
-            ImageURL = dto.ImageURL
+            Description = dto.Description!,
+            ImageURL = dto.ImageURL!
         };
 
         var created = await _menuItemService.CreateMenuItem(menuItem);
@@ -50,10 +50,10 @@ public class MenuItemController : ControllerBase
         var menuItem = await _menuItemService.GetMenuItemById(id);
         if (menuItem == null) return NotFound();
 
-        menuItem.Name = dto.Name;
+        menuItem.Name = dto.Name!;
         menuItem.Price = dto.Price;
-        menuItem.Description = dto.Description;
-        menuItem.ImageURL = dto.ImageURL;
+        menuItem.Description = dto.Description!;
+        menuItem.ImageURL = dto.ImageURL!;
 
         return Ok(await _menuItemService.UpdateMenuItem(menuItem));
     }
