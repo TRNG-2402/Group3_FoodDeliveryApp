@@ -1,7 +1,7 @@
 import { useId, useState } from "react";
 import { api } from "../../../services/api";
 import { SignUpView } from "./SignUp.view";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import type { IUserInfo } from "./SignUp.interface";
 import { validateEmail } from "../../../utils/emailValidation";
 
@@ -13,6 +13,8 @@ export const SignUp = () => {
     const [userInfo, setUserInfo] = useState<IUserInfo>(emptyUser);
     const [error, setError] = useState<string>("");
 
+    const navigate = useNavigate();
+
     const handleSignUp = () => {
         const { name, email, phone, password, userType, address, vehicleType } = userInfo;
         const body = { name, email, phone, password, userType, address, vehicleType };
@@ -20,7 +22,10 @@ export const SignUp = () => {
         const validationPassed = validation(userInfo);
 
         if (validationPassed) api.post("auth/register", body)
-            //  .then(r => console.log(r))
+            .then(() => {
+                if (userInfo.userType === "customer") navigate("/customer");
+                else if (userInfo.userType === "driver") navigate("/driver");
+            })
             .catch(e => {
                 setError(e?.response?.data);
             });
