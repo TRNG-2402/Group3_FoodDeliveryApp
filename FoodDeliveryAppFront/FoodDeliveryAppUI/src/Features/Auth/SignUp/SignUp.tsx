@@ -1,7 +1,7 @@
-import { useId, useState } from "react";
+import { useState } from "react";
 import { api } from "../../../services/api";
 import { SignUpView } from "./SignUp.view";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import type { IUserInfo } from "./SignUp.interface";
 import { validateEmail } from "../../../utils/emailValidation";
 

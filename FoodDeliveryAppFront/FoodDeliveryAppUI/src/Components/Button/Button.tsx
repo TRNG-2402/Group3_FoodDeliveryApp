@@ -1,5 +1,3 @@
-// Generic button, add styling and input as app progress
-
 import "./Button.style.css";
 
 interface IButton {

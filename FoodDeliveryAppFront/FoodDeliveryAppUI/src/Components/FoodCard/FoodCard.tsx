@@ -1,7 +1,6 @@
-import { useState, type Dispatch, type SetStateAction } from 'react';
+import { type Dispatch, type SetStateAction } from 'react';
 import "./FoodCard.style.css";
 import placeholderImage from "../../assets/placeholder-image.png";
-import type { ICart } from '../../Interfaces/ICart';
 import type { IMenuItem } from '../../Interfaces/MenuItem';
 
 interface IFoodCard {
@@ -41,8 +40,8 @@ export const FoodCard = ({ id, name, description, price, imageURL, quantity, car
                                     var newQuant = (oldQuant?.quantity ?? 0) - 1;
                                     if (newQuant < 1) newQuant = 0;
                                     const updatedItem = { ...oldQuant, quantity: newQuant };
-                                    
-                                    if(newQuant < 1) return cart.filter(e => e.menuItemId !== id);
+
+                                    if (newQuant < 1) return cart.filter(e => e.menuItemId !== id);
 
                                     return cart.map(e => {
                                         if (e.menuItemId === id) {
