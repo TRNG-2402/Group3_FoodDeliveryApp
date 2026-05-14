@@ -2,6 +2,7 @@ import { useState, type Dispatch, type SetStateAction } from 'react';
 import "./FoodCard.style.css";
 import placeholderImage from "../../assets/placeholder-image.png";
 import type { ICart } from '../../Interfaces/ICart';
+import type { IMenuItem } from '../../Interfaces/MenuItem';
 
 interface IFoodCard {
     id: string | number;
@@ -10,7 +11,7 @@ interface IFoodCard {
     price: number;
     imageURL?: string;
     quantity: number;
-    setCart: Dispatch<SetStateAction<ICart>>;
+    setCart: Dispatch<SetStateAction<IMenuItem[]>>;
 }
 
 export const FoodCard = ({ id, name, description, price, imageURL, quantity, setCart }: IFoodCard) => {
@@ -18,7 +19,7 @@ export const FoodCard = ({ id, name, description, price, imageURL, quantity, set
     return (
         <div className="menu-card">
             <div className="image-container">
-                <img src={imageURL ?? placeholderImage} alt="classNameic Cheesefood" className="food-image" />
+                <img src={imageURL ?? placeholderImage} alt={name} className="food-image" />
             </div>
 
             <div className="content-container">
@@ -29,43 +30,53 @@ export const FoodCard = ({ id, name, description, price, imageURL, quantity, set
                 </div>
 
                 <div className="action-group">
-                    <span className="price">${(price * quantity).toFixed(2)}</span>
+                    {/* <span className="price">${(price * quantity).toFixed(2)}</span> */}
 
                     <div className="stepper">
                         <button className="step-btn" aria-label="Decrease quantity"
                             onClick={() => {
-                                setCart(cart => {
-                                    const oldQuant = cart.foodItems.filter(c => c.id === id)[0];
-                                    var newQuant = oldQuant.quantity - 1;
-                                    if (newQuant < 0) newQuant = 0;
+                                setCart((cart: IMenuItem[]) => {
+                                    const oldQuant = cart.filter(c => c.menuItemId === id)[0];
+                                    var newQuant = (oldQuant?.quantity ?? 0) - 1;
+                                    if (newQuant < 1) newQuant = 0;
                                     const updatedItem = { ...oldQuant, quantity: newQuant };
-                                    return {
-                                        foodItems: cart.foodItems.map(e => {
-                                            if (e.id === id) {
-                                                e = updatedItem;
-                                            }
-                                            return e
-                                        })
-                                    }
+                                    
+                                    if(newQuant < 1) return cart.filter(e => e.menuItemId !== id);
+
+                                    return cart.map(e => {
+                                        if (e.menuItemId === id) {
+                                            e = updatedItem;
+                                        }
+                                        return e
+                                    })
+
                                 })
                             }}
-                        >−</button>
-                        <span className="quantity">{quantity}</span>
+                        >-</button>
+                        {/* <span className="quantity">{quantity}</span> */}
                         <button className="step-btn" aria-label="Increase quantity"
                             onClick={() => {
-                                setCart(cart => {
-                                    const oldQuant = cart.foodItems.filter(c => c.id === id)[0];
-                                    var newQuant = oldQuant.quantity + 1;
+                                const a: IMenuItem = {
+                                    menuItemId: id as number, name, description, price
+                                }
+                                setCart((old: IMenuItem[]) => {
+                                    if (!old.find(e => e.menuItemId === id))
+                                        return [...old, a]
+                                    return [...old];
+                                });
+                                setCart((cart: IMenuItem[]) => {
+                                    const oldQuant = cart.filter(c => c.menuItemId === id)[0];
+                                    var newQuant = (oldQuant?.quantity ?? 0) + 1;
                                     if (newQuant > 10) newQuant = 10;
                                     const updatedItem = { ...oldQuant, quantity: newQuant };
-                                    return {
-                                        foodItems: cart.foodItems.map(e => {
-                                            if (e.id === id) {
-                                                e = updatedItem;
-                                            }
-                                            return e
-                                        })
-                                    }
+
+                                    return cart.map(e => {
+                                        if (e.menuItemId === id) {
+                                            e = updatedItem;
+                                        }
+                                        return e
+                                    })
+
                                 })
                             }}
                         >+</button>

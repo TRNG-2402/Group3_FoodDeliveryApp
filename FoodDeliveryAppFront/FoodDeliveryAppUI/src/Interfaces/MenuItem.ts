@@ -1,8 +1,9 @@
 export interface IMenuItem {
-    id: number;
+    menuItemId: number;
     name: string;
     description?: string;
     price: number;
-    image?: string;
-    quantity: number;
+    imageURL?: string;
+    quantity?: number;
+    restaurantId?: number;
 }
