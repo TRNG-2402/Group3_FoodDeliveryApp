@@ -5,6 +5,7 @@ namespace FoodDeliveryApp.API.Services;
 
 public interface IMenuItemService
 {
+    public Task<List<MenuItem>> GetAllMenuItems();
     public Task<MenuItem?> GetMenuItemById(int id);
     public Task<List<MenuItem>> GetMenuItemsByRestaurantId(int id);
     public Task<MenuItem> CreateMenuItem(MenuItem menuItem);
@@ -21,6 +22,8 @@ public class MenuItemService : IMenuItemService
         _menuItemRepo = menuItemRepo;
     }
 
+    async public Task<List<MenuItem>> GetAllMenuItems() =>
+        await _menuItemRepo.GetAllMenuItemsAsync();
     async public Task<MenuItem?> GetMenuItemById(int id) =>
         await _menuItemRepo.GetMenuItemByIdAsync(id);
 

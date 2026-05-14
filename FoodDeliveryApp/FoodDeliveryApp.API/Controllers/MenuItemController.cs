@@ -16,6 +16,14 @@ public class MenuItemController : ControllerBase
         _menuItemService = menuItemService;
     }
 
+    [HttpGet]
+    public async Task<ActionResult<MenuItem>> GetAllMenuItems()
+    {
+        var menuItem = await _menuItemService.GetAllMenuItems();
+        if (menuItem == null) return NotFound();
+        return Ok(menuItem);
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<MenuItem>> GetMenuItemById(int id)
     {

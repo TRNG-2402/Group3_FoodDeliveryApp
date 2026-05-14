@@ -4,6 +4,7 @@ namespace FoodDeliveryApp.API.Data;
 
 public interface IMenuItemRepo
 {
+    Task<List<MenuItem>> GetAllMenuItemsAsync();
     Task<MenuItem?> GetMenuItemByIdAsync(int menuItemId);
     Task<List<MenuItem>> GetMenuItemsByRestaurantIdAsync(int restaurantId);
     Task<MenuItem> CreateMenuItemAsync(MenuItem menuItem);
