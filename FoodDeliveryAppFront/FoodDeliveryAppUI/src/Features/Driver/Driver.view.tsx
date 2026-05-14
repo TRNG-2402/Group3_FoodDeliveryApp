@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react';
-import { jwtDecode, type JwtPayload } from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 import './Driver.style.css';
-import type { ICart } from '../../Interfaces/ICart';
-import { FoodCard } from '../../Components/FoodCard/FoodCard';
 import { Button } from '../../Components/Button/Button';
-import { getAllMenuItems, getAllOrders, getAllRestaurants, getCustomerById, getMenuItemsByRestaurantId, getOrderByCustomerId, getRestaurantById, postOrder } from './Driver';
+import { getAllOrders, getAllRestaurants, getCustomerById, getMenuItemsByRestaurantId, getRestaurantById } from './Driver';
 import type { IMenuItem } from '../../Interfaces/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import { MapComponent } from '../../Components/Map/MapComponent';
 
-const cartInit: IMenuItem[] = [];
 
 export const Driver = () => {
     const apikey = import.meta.env.VITE_Google_Map_API_Key;

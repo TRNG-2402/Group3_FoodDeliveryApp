@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import { jwtDecode, type JwtPayload } from "jwt-decode";
 
 import './Customer.style.css';
-import type { ICart } from '../../Interfaces/ICart';
 import { FoodCard } from '../../Components/FoodCard/FoodCard';
 import { Button } from '../../Components/Button/Button';
-import { getAllMenuItems, getAllRestaurants, getCustomer, getMenuItemsByRestaurantId, getOrderByCustomerId, postOrder } from './Customer';
+import { getAllRestaurants, getCustomer, getMenuItemsByRestaurantId, getOrderByCustomerId, postOrder } from './Customer';
 import type { IMenuItem } from '../../Interfaces/MenuItem';
 import { useNavigate } from 'react-router-dom';
 
