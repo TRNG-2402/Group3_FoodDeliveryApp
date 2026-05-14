@@ -1,12 +1,6 @@
+import type { IMenuItem } from "../../Interfaces/MenuItem";
 import { apiService } from "../../services/apiService"
 
-export const getAllOrders = async () => {
-    try {
-        // /api/MenuItem/restaurant/{restaurantId}
-        
-        const res = await apiService.get("order");
-        return res;
-    } catch (error) {
-        return error;
-    }   
+export const getAllMenuItems = async ():Promise<IMenuItem[]> => {
+        return await apiService.get("menuitem");
 }

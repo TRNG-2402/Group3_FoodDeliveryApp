@@ -3,31 +3,35 @@ import './Customer.style.css';
 import type { ICart } from '../../Interfaces/ICart';
 import { FoodCard } from '../../Components/FoodCard/FoodCard';
 import { Button } from '../../Components/Button/Button';
-import { getAllOrders } from './Customer';
+import { getAllMenuItems } from './Customer';
+import type { IMenuItem } from '../../Interfaces/MenuItem';
 
 // Mock Data replace with API
 const food = [
-    { id: 1, name: "Burger", price: 12.99, description: "Burgers, Fast Food", img: "image_d9fad9.png", quantity: 0 },
-    { id: 2, name: "Pizza", price: 25.75, description: "Pizza, Italian", img: "image_d9fad9.png", quantity: 0 },
-    { id: 3, name: "Sushi", price: 37.99, description: "Sushi, Japanese", img: "image_d9fad9.png", quantity: 0 },
-    { id: 4, name: "Taco", price: 8.99, description: "Mexican, Tacos", img: "image_d9fad9.png", quantity: 0 },
+    { menuItemId: 1, name: "Burger", price: 12.99, description: "Burgers, Fast Food", imageURL: "image_d9fad9.png", quantity: 0 },
+    { menuItemId: 2, name: "Pizza", price: 25.75, description: "Pizza, Italian", imageURL: "image_d9fad9.png", quantity: 0 },
+    { menuItemId: 3, name: "Sushi", price: 37.99, description: "Sushi, Japanese", imageURL: "image_d9fad9.png", quantity: 0 },
+    { menuItemId: 4, name: "Taco", price: 8.99, description: "Mexican, Tacos", imageURL: "image_d9fad9.png", quantity: 0 },
 ];
 
-const cartInit: ICart = {
-    foodItems: food
-}
+const cartInit: IMenuItem[] = [];
 
 export const Customer = () => {
-    const [cart, setCart] = useState<ICart>(cartInit);
+    const [menu, setMenu] = useState<any>();
+    const [cart, setCart] = useState<IMenuItem[]>(cartInit);
     const [total, setTotal] = useState<number>(0);
 
     useEffect(() => {
-        const r = getAllOrders();
-        
+        getAllMenuItems()
+            .then((r: IMenuItem[]) => {
+                setMenu(r);
+            })
     }, []);
 
+    console.log(cart);
+
     useEffect(() => {
-        setTotal(cart.foodItems.reduce((acc, cur) => acc + cur.price * cur.quantity, 0))
+        setTotal(cart.reduce((acc, cur) => acc + cur.price * (cur.quantity ?? 0), 0))
     }, [cart]);
 
     return (
@@ -59,15 +63,16 @@ export const Customer = () => {
                 <section className="restaurant-section">
                     <h2 className="menu-title">Delicious Meals Near You:</h2>
                     <div className="restaurant-list">
-                        {cart?.foodItems?.map(f => (
+                        {menu?.map((m: IMenuItem) => (
                             <FoodCard
-                                key={f.id}
-                                id={f.id}
-                                name={f.name}
-                                description={f?.description}
-                                price={f.price}
-                                quantity={f.quantity}
+                                key={m.menuItemId}
+                                id={m.menuItemId}
+                                name={m.name}
+                                description={m?.description}
+                                price={m.price}
+                                quantity={m?.quantity ?? 0}
                                 setCart={setCart}
+                                imageURL={m.imageURL}
                             />
                         ))}
                     </div>
@@ -77,6 +82,11 @@ export const Customer = () => {
                     maxWidth: "600px",
                     display: "flex", flexDirection: "column", alignItems: "flex-end"
                 }}>
+                    {
+                        cart?.map(e => (
+                            <h4>{e.name} x {e.quantity} .......... ${(e.price * (e?.quantity ?? 1)).toFixed(2)}</h4>
+                        ))
+                    }
                     <h3>
                         Total: ${total.toFixed(2)}
                     </h3>
