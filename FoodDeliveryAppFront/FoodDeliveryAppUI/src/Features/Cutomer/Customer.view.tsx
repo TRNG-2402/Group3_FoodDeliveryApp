@@ -102,7 +102,7 @@ export const Customer = () => {
                             <div style={{ border: "1px solid", padding: "5px" }}>Order Id: {order?.orderId}</div>
                             <div style={{ border: "1px solid", padding: "5px" }}>Order Date: {order?.orderDate?.split('T')[0]}</div>
                             <div style={{ border: "1px solid", padding: "5px" }}>Status: {order?.status}</div>
-                            <div style={{ border: "1px solid", padding: "5px" }}>Total: {order?.total}</div>
+                            <div style={{ border: "1px solid", padding: "5px" }}>Total: ${order?.total}</div>
                             {
                                 order?.orderItems?.map((item: any) => <div key={item?.orderItemId}
                                     style={{ border: "1px solid", padding: "5px" }}

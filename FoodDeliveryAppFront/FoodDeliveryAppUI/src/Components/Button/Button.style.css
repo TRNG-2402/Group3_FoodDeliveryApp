@@ -21,6 +21,9 @@
     border-radius: 8px;
     font-size: 16px;
 }
+.buttonOutline {
+    cursor: pointer;
+}
 
 .button-small {
     width: 250px;
