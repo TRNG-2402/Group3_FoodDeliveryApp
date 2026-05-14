@@ -71,6 +71,7 @@ export const Customer = () => {
                                 description={m?.description}
                                 price={m.price}
                                 quantity={m?.quantity ?? 0}
+                                cart={cart}
                                 setCart={setCart}
                                 imageURL={m.imageURL}
                             />
@@ -84,11 +85,14 @@ export const Customer = () => {
                 }}>
                     {
                         cart?.map(e => (
-                            <h4>{e.name} x {e.quantity} .......... ${(e.price * (e?.quantity ?? 1)).toFixed(2)}</h4>
+                            <h3>{e.name} x{e.quantity} .................... ${(e.price * (e?.quantity ?? 1)).toFixed(2)}</h3>
                         ))
                     }
+                    <h3>Tax.................... ${(total * 0.0875).toFixed(2)}</h3>
+                    <h3>Delivery Fee.................... $3.00</h3>
+                    -------------------------------------------
                     <h3>
-                        Total: ${total.toFixed(2)}
+                        Total.................... ${(total * 1.0875 + 3.00).toFixed(2)}
                     </h3>
                     <Button className="buttonPrimary button-small" onClick={() => {
 
