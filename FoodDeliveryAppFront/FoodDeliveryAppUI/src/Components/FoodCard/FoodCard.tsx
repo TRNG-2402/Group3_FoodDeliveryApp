@@ -14,7 +14,7 @@ interface IFoodCard {
     setCart: Dispatch<SetStateAction<IMenuItem[]>>;
 }
 
-export const FoodCard = ({ id, name, description, price, imageURL, quantity, cart, setCart }: IFoodCard) => {
+export const FoodCard = ({ id, name, description, price, imageURL, cart, setCart }: IFoodCard) => {
 
     return (
         <div className="menu-card">

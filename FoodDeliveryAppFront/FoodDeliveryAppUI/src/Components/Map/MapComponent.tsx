@@ -102,21 +102,21 @@ export const MapComponent = ({customer, restaurant, apikey}: IAddresses) => {
 
   }
 
-  let staticMapsUrl = createStaticMapsUrl({
-    apiKey: key,
-    width: 5000,
-    height: 5000,
-    zoom: 11,
-    center: { lat: 34.0522, lng: -118.2437 },
+  // let staticMapsUrl = createStaticMapsUrl({
+  //   apiKey: key,
+  //   width: 5000,
+  //   height: 5000,
+  //   zoom: 11,
+  //   center: { lat: 34.0522, lng: -118.2437 },
 
-    paths: [
-      {
-        coordinates: `enc:${encodedPath}`,
-        weight: 7,
-        color: "blue",
-      }
-    ]
-  });
+  //   paths: [
+  //     {
+  //       coordinates: `enc:${encodedPath}`,
+  //       weight: 7,
+  //       color: "blue",
+  //     }
+  //   ]
+  // });
 
   return (
     <>
