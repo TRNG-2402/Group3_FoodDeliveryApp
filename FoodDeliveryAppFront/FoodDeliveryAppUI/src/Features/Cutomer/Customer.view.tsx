@@ -3,6 +3,7 @@ import './Customer.style.css';
 import type { ICart } from '../../Interfaces/ICart';
 import { FoodCard } from '../../Components/FoodCard/FoodCard';
 import { Button } from '../../Components/Button/Button';
+import { getAllOrders } from './Customer';
 
 // Mock Data replace with API
 const food = [
@@ -20,6 +21,10 @@ export const Customer = () => {
     const [cart, setCart] = useState<ICart>(cartInit);
     const [total, setTotal] = useState<number>(0);
 
+    useEffect(() => {
+        const r = getAllOrders();
+        
+    }, []);
 
     useEffect(() => {
         setTotal(cart.foodItems.reduce((acc, cur) => acc + cur.price * cur.quantity, 0))
