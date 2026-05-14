@@ -11,10 +11,11 @@ interface IFoodCard {
     price: number;
     imageURL?: string;
     quantity: number;
+    cart: IMenuItem[];
     setCart: Dispatch<SetStateAction<IMenuItem[]>>;
 }
 
-export const FoodCard = ({ id, name, description, price, imageURL, quantity, setCart }: IFoodCard) => {
+export const FoodCard = ({ id, name, description, price, imageURL, quantity, cart, setCart }: IFoodCard) => {
 
     return (
         <div className="menu-card">
@@ -52,8 +53,8 @@ export const FoodCard = ({ id, name, description, price, imageURL, quantity, set
 
                                 })
                             }}
-                        >-</button>
-                        {/* <span className="quantity">{quantity}</span> */}
+                        >↓</button>
+                        <span className="quantity">{cart.filter(c => c.menuItemId === id)[0]?.quantity ?? 0}</span>
                         <button className="step-btn" aria-label="Increase quantity"
                             onClick={() => {
                                 const a: IMenuItem = {
@@ -79,7 +80,7 @@ export const FoodCard = ({ id, name, description, price, imageURL, quantity, set
 
                                 })
                             }}
-                        >+</button>
+                        >↑</button>
 
                     </div>
 
