@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { FoodCard } from '../FoodCard/FoodCard';
 import './Customer.style.css';
 import type { ICart } from '../../Interfaces/ICart';
-import { Button } from '../Button/Button';
+import { FoodCard } from '../../Components/FoodCard/FoodCard';
+import { Button } from '../../Components/Button/Button';
 
 // Mock Data replace with API
 const food = [
@@ -56,6 +56,7 @@ export const Customer = () => {
                     <div className="restaurant-list">
                         {cart?.foodItems?.map(f => (
                             <FoodCard
+                                key={f.id}
                                 id={f.id}
                                 name={f.name}
                                 description={f?.description}

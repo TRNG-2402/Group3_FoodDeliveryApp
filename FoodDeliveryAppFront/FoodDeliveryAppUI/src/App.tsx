@@ -3,7 +3,7 @@ import { Login } from "./Features/Auth/Login/Login";
 import { SignUp } from "./Features/Auth/SignUp/SignUp";
 import "./App.css";
 import { FoodCard } from "./Components/FoodCard/FoodCard";
-import { Customer } from "./Components/Cutomer/Customer.view";
+import { Customer } from "./Features/Cutomer/Customer.view";
 
 function App() {
   return (
