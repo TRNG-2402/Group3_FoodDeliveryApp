@@ -1,4 +1,4 @@
-import { Polyline, Map, APIProvider, createStaticMapsUrl } from "@vis.gl/react-google-maps";
+import { Polyline, Map, APIProvider } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
 
 // 1. use geocode to convert address to coordinates
