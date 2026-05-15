@@ -42,7 +42,7 @@ export const Driver = () => {
 
         getAllOrders()
             .then((res: any) => {
-                const orders = res?.filter((order: any) => order?.status === "Open");
+                const orders = res?.filter((order: any) => order?.status === "Pending");
                 setOrders(orders);
             })
     }, [currentTab]);

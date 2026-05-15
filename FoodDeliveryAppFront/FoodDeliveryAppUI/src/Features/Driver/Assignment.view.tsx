@@ -53,7 +53,7 @@ export const Assignment = ({ driverId, assignments, setAssignments, setCurrentTa
                             openConfirm(
                                 "Cancel Delivery",
                                 `Cancel order #${order?.orderId}? It will return to Open status.`,
-                                () => updateOrder(order?.orderId, { status: "Open", driverId: 1 })
+                                () => updateOrder(order?.orderId, { status: "Pending", driverId: 1 })
                                     .then(() => setCurrentTab("OpenOrders")),
                                 "Cancel Delivery",
                                 true
