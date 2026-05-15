@@ -66,6 +66,12 @@ export const LoginView = ({ handleLogin, email, setEmail, password, setPassword,
                     </Link>
                 </p>
 
+                <p className="loginBottomText" style={{ marginTop: "8px", fontSize: "12px" }}>
+                    <Link to="/restaurant" className="loginLink">
+                        Restaurant Admin
+                    </Link>
+                </p>
+
             </div>
 
         </div>
