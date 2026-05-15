@@ -13,4 +13,12 @@ export const apiService = {
         const response = await api.post<TResponse>(endpoint, data);
         return response.data;
     },
+
+    async put<TRequest, TResponse>(
+        endpoint: string,
+        data: TRequest
+    ): Promise<TResponse> {
+        const response = await api.put<TResponse>(endpoint, data);
+        return response.data;
+    },
 };
