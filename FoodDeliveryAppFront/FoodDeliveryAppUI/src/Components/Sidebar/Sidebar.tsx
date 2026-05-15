@@ -26,29 +26,15 @@ export const Sidebar = () => {
 
             <div className="sidebarMenu">
 
-                <Link to="/dashboard" className="sidebarLink">
+                <Link to="/restaurant" className="sidebarLink">
                     <SidebarItem icon={<MdDashboard />} text="Dashboard" />
                 </Link>
 
-                <Link to="/restaurants" className="sidebarLink">
-                    <SidebarItem icon={<MdRestaurant />} text="Restaurants" />
-                </Link>
 
                 <Link to="/orders" className="sidebarLink">
                     <SidebarItem icon={<FaShoppingBag />} text="Orders" />
                 </Link>
 
-                <Link to="/delivery" className="sidebarLink">
-                    <SidebarItem icon={<MdDeliveryDining />} text="Delivery" />
-                </Link>
-
-                <Link to="/profile" className="sidebarLink">
-                    <SidebarItem icon={<FaUserCircle />} text="Profile" />
-                </Link>
-
-                <Link to="/settings" className="sidebarLink">
-                    <SidebarItem icon={<IoSettingsSharp />} text="Settings" />
-                </Link>
 
             </div>
         </aside>

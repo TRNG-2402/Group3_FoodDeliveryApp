@@ -1,7 +1,7 @@
-import { useId, useState } from "react";
+import { useState } from "react";
 import { api } from "../../../services/api";
 import { SignUpView } from "./SignUp.view";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import type { IUserInfo } from "./SignUp.interface";
 import { validateEmail } from "../../../utils/emailValidation";
 
@@ -24,6 +24,7 @@ export const SignUp = () => {
         if (validationPassed) api.post("auth/register", body)
             .then((response) => {
                 localStorage.setItem("token", response.data.token);
+                localStorage.setItem("userType", userInfo.userType);
                 if (userInfo.userType === "customer") navigate("/customer");
                 else if (userInfo.userType === "driver") navigate("/driver");
             })

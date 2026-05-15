@@ -11,6 +11,12 @@ public class MenuItemRepo : IMenuItemRepo
     {
         _context = context;
     }
+
+    public async Task<List<MenuItem>> GetAllMenuItemsAsync()
+    {
+        return await _context.MenuItems.Select(m => m).ToListAsync();
+    }
+
     public async Task<MenuItem?> GetMenuItemByIdAsync(int menuItemId)
     {
         return await _context.MenuItems.FindAsync(menuItemId);

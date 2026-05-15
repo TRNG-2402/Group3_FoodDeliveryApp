@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../../services/api";
 import { LoginView } from "./Login.view";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,13 @@ export const Login = () =>
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        const userType = localStorage.getItem("userType");
+        if (token && userType === "customer") navigate("/customer");
+        else if (token && userType === "driver") navigate("/driver");
+    }, []);
 
     const handleLogin = () =>
     {
@@ -35,6 +42,7 @@ export const Login = () =>
             .then((response) =>
             {
                 const userType = response.data.userType?.toLowerCase();
+                localStorage.setItem("userType", userType);
                 if (userType === "customer") navigate("/customer");
                 else if (userType === "driver") navigate("/driver");
             })

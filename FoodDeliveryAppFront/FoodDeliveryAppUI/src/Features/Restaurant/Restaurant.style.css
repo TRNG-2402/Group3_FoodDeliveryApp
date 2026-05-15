@@ -1,80 +1,172 @@
-.restaurantsPage {
+.restaurantOwnerPage {
     min-height: 100vh;
-    width: 100%;
     display: flex;
-    background-color: #ffffff;
-    overflow-x: hidden;
+    background: radial-gradient(circle at center, #ff6a00 0%, #fff3e8 35%, #ffffff 75%);
 }
 
-.restaurantsMain {
+.restaurantOwnerMain {
     flex: 1;
-    min-width: 0;
-    padding: 32px 40px;
-    box-sizing: border-box;
+    padding: 32px;
+    margin-left: 90px;
 }
 
-.restaurantsHeader {
-    width: 100%;
+.restaurantOwnerHeader,
+.restaurantOwnerListHeader {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 24px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
-.restaurantsSection {
-    max-width: 900px;
+.restaurantOwnerHeader h1,
+.restaurantOwnerListHeader h2 {
+    margin: 0;
+    color: #1f1f1f;
 }
 
-.restaurantsSection h2 {
-    font-size: 22px;
-    margin-bottom: 18px;
+.restaurantOwnerSubtitle {
+    margin: 0 0 6px;
+    color: #ff4500;
+    font-weight: 700;
+    font-size: 14px;
 }
 
-.restaurantsList {
-    width: 100%;
-    border: 1px solid #eeeeee;
-    border-radius: 14px;
-    overflow: hidden;
+.restaurantOwnerBadge {
+    background: #ffffff;
+    color: #ff4500;
+    border: 1px solid #ffd3c2;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
-.deliveryBox {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 220px;
-    flex-shrink: 0;
+.restaurantOwnerListSection {
+    margin-top: 28px;
+    background: rgba(255, 255, 255, 0.86);
+    padding: 24px;
+    border-radius: 24px;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
 }
 
-.searchBox {
-    flex: 1;
-    min-width: 0;
-    max-width: 650px;
-    height: 52px;
-    background-color: #f7f7f7;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 0 18px;
-    box-sizing: border-box;
-}
-
-.searchBox input {
-    flex: 1;
-    min-width: 0;
+.restaurantRefreshBtn,
+.restaurantEditBtn,
+.restaurantSaveBtn {
     border: none;
-    outline: none;
-    background: transparent;
-    font-size: 15px;
-}
-
-.filterButton {
-    width: 52px;
-    min-width: 52px;
-    height: 52px;
-    border: none;
+    background: #ff4500;
+    color: white;
+    padding: 10px 18px;
     border-radius: 12px;
-    background-color: #f7f7f7;
-    font-size: 22px;
+    font-weight: 700;
     cursor: pointer;
+}
+
+.restaurantCancelBtn {
+    border: 1px solid #ddd;
+    background: white;
+    color: #333;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.restaurantDeleteBtn {
+    border: none;
+    background: #ffe4dc;
+    color: #d93600;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.restaurantMenuGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.restaurantMenuCard {
+    background: white;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f1f1f1;
+}
+
+.restaurantMenuImage {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background: #f5f5f5;
+}
+
+.restaurantMenuContent {
+    padding: 18px;
+}
+
+.restaurantMenuContent h3 {
+    margin: 0 0 8px;
+    color: #1f1f1f;
+}
+
+.restaurantMenuContent p {
+    min-height: 42px;
+    color: #666;
+    margin: 0 0 12px;
+}
+
+.restaurantMenuContent strong {
+    display: block;
+    color: #ff4500;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.restaurantCardActions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.restaurantEditForm {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.restaurantEditForm input,
+.restaurantEditForm textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.restaurantEditForm textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.restaurantEmptyText {
+    color: #555;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .restaurantOwnerMain {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .restaurantOwnerHeader,
+    .restaurantOwnerListHeader {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
 }
