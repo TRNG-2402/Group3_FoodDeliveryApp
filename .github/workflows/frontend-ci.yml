@@ -121,4 +121,4 @@ jobs:
               push: true 
               tags: ${{ steps.meta.outputs.tags }}
               labels: ${{ steps.meta.outputs.labels }}
-              build-args: VITE_API_KEY=${{ vars.VITE_API_KEY }}
+              build-args: VITE_API_KEY=${{ secrets.VITE_API_KEY }}
