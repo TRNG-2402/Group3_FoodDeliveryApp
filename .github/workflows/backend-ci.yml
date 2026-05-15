@@ -54,7 +54,7 @@ jobs:
                 dotnet-version: '10.0.x'
 
           - name: Restore dependencies
-            run: dotnet restore FoodDeliveryApp/FoodDeliveryApp.API.csproj
+            run: dotnet restore FoodDeliveryApp.API/FoodDeliveryApp.API.csproj
 
           - name: Publish
             run: dotnet publish FoodDeliveryApp.API/FoodDeliveryApp.API.csproj -c Release --no-restore -o ./publish
