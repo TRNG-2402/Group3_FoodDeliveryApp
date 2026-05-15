@@ -4,8 +4,11 @@ import { SignUp } from "./Features/Auth/SignUp/SignUp";
 import "./App.css";
 import { Customer } from "./Features/Cutomer/Customer.view";
 import { Driver } from "./Features/Driver/Driver.view";
+import NotFound from "./Features/Error/NotFound.view";
 
-function App() {
+
+function App()
+{
   return (
     <BrowserRouter>
       <Routes>
@@ -14,6 +17,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/customer" element={<Customer />} />
         <Route path="/driver" element={<Driver />} />
+        <Route path="*" element={< NotFound />} />
       </Routes>
     </BrowserRouter>
   );

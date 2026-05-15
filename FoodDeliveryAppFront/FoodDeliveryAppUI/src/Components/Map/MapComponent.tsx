@@ -59,12 +59,12 @@ export const MapComponent = ({customer, restaurant, apikey}: IAddresses) => {
       })
 
     const r1 = await response.json();
-    if (Object.keys(r1).length === 0) alert("Invalid Address(s): Please Provide Valid Address 1")
+    //if (Object.keys(r1).length === 0) alert("Invalid Address(s): Please Provide Valid Address 1")
     const latitude1 = r1?.results[0]?.location?.latitude;
     const longitude1 = r1?.results[0]?.location?.longitude;
 
     const r2 = await response2.json();
-    if (Object.keys(r2).length === 0) alert("Invalid Address(s): Please Provide Valid Addreses 2")
+    //if (Object.keys(r2).length === 0) alert("Invalid Address(s): Please Provide Valid Addreses 2")
     const latitude2 = r2?.results[0]?.location?.latitude;
     const longitude2 = r2?.results[0]?.location?.longitude;
 
@@ -89,14 +89,14 @@ export const MapComponent = ({customer, restaurant, apikey}: IAddresses) => {
       "travelMode": "DRIVE",
       "routingPreference": "TRAFFIC_AWARE",
     }
-    if (Object.keys(r2).length === 0) alert("Invalid Address(s): Please Provide Valid Addresses")
+    //if (Object.keys(r2).length === 0) alert("Invalid Address(s): Please Provide Valid Addresses")
 
     try {
       const r = await postData("https://routes.googleapis.com/directions/v2:computeRoutes", body)
       const poly: string = r?.routes[0]?.polyline?.encodedPolyline;
       setEncodedPath(poly);
     } catch {
-      if (!r1) alert("Invalid Address(s): Please Provide Valid Addresses")
+      //if (!r1) alert("Invalid Address(s): Please Provide Valid Addresses")
     }
 
 
