@@ -75,7 +75,7 @@ jobs:
           - name: Upload dist artifact
             uses: actions/upload-artifact@v4
             with:
-                name: webstorefront-dist
+                name: fooddeliveryapp-dist
                 path: FoodDeliveryAppFront/FoodDeliveryAppUI/dist
                 retention-days: 7
 
@@ -91,7 +91,7 @@ jobs:
           - name: Download dist artifact
             uses: actions/download-artifact@v4
             with:
-                name: webstorefront-dist
+                name: fooddeliveryapp-dist
                 path: FoodDeliveryAppFront/FoodDeliveryAppUI/dist
 
 
