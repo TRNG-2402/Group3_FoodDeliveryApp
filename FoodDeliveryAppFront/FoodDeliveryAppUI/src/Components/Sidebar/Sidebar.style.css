@@ -1,11 +1,14 @@
 .sidebar {
     width: 240px;
-    min-height: 100vh;
+    min-width: 240px;
+    height: 100vh;
     background-color: #ffffff;
     border-right: 1px solid #eeeeee;
     padding: 24px 18px;
     position: sticky;
     top: 0;
+    flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 .sidebarLogo {
@@ -58,4 +61,8 @@
 .sidebarItemText {
     font-size: 15px;
     font-weight: 500;
+}
+.sidebarLink {
+  text-decoration: none;
+  color: inherit;
 }

@@ -1,8 +1,18 @@
-import { MdFastfood, MdDashboard, MdRestaurant, MdDeliveryDining } from "react-icons/md";
+import {
+    MdFastfood,
+    MdDashboard,
+    MdRestaurant,
+    MdDeliveryDining,
+} from "react-icons/md";
+
 import { FaShoppingBag, FaUserCircle } from "react-icons/fa";
+
 import { IoSettingsSharp } from "react-icons/io5";
 
+import { Link } from "react-router-dom";
+
 import { SidebarItem } from "./SidebarItem";
+
 import "./Sidebar.style.css";
 
 export const Sidebar = () => {
@@ -10,16 +20,22 @@ export const Sidebar = () => {
         <aside className="sidebar">
             <div className="sidebarLogo">
                 <MdFastfood className="sidebarLogoIcon" />
+
                 <h2>Turbo Feast</h2>
             </div>
 
             <div className="sidebarMenu">
-                <SidebarItem icon={<MdDashboard />} text="Dashboard" />
-                <SidebarItem icon={<MdRestaurant />} text="Restaurants" />
-                <SidebarItem icon={<FaShoppingBag />} text="Orders" />
-                <SidebarItem icon={<MdDeliveryDining />} text="Delivery" />
-                <SidebarItem icon={<FaUserCircle />} text="Profile" />
-                <SidebarItem icon={<IoSettingsSharp />} text="Settings" />
+
+                <Link to="/restaurant" className="sidebarLink">
+                    <SidebarItem icon={<MdDashboard />} text="Dashboard" />
+                </Link>
+
+
+                <Link to="/orders" className="sidebarLink">
+                    <SidebarItem icon={<FaShoppingBag />} text="Orders" />
+                </Link>
+
+
             </div>
         </aside>
     );

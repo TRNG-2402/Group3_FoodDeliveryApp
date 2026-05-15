@@ -4,13 +4,12 @@ import { createMenuItem } from "./MenuItem";
 import { MdFastfood, MdDescription, MdLink, MdAttachMoney } from "react-icons/md";
 import "./MenuItem.style.css";
 
-interface AddMenuItemProps
-{
+interface AddMenuItemProps {
     restaurantId: number;
+    onItemCreated?: () => void;
 }
 
-export const AddMenuItem = ({ restaurantId }: AddMenuItemProps) =>
-{
+export const AddMenuItem = ({ restaurantId, onItemCreated }: AddMenuItemProps) => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [imageURL, setImageURL] = useState("");
@@ -22,8 +21,7 @@ export const AddMenuItem = ({ restaurantId }: AddMenuItemProps) =>
         setTimeout(() => setToast(null), 3000);
     };
 
-    const handleSubmit = async () =>
-    {
+    const handleSubmit = async () => {
         if (!name || !description || !price) {
             showToast("Please fill in all required fields.", "error");
             return;
@@ -36,6 +34,7 @@ export const AddMenuItem = ({ restaurantId }: AddMenuItemProps) =>
                 imageURL,
                 price: parseFloat(price),
             });
+            onItemCreated?.();
             handleClear();
             showToast("Food item added successfully!", "success");
         } catch (err) {
@@ -44,8 +43,7 @@ export const AddMenuItem = ({ restaurantId }: AddMenuItemProps) =>
         }
     };
 
-    const handleClear = () =>
-    {
+    const handleClear = () => {
         setName("");
         setDescription("");
         setImageURL("");

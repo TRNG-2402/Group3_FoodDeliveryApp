@@ -21,4 +21,8 @@ export const apiService = {
         const response = await api.put<TResponse>(endpoint, data);
         return response.data;
     },
+    async delete<T>(endpoint: string): Promise<T> {
+        const response = await api.delete<T>(endpoint);
+        return response.data;
+    }
 };

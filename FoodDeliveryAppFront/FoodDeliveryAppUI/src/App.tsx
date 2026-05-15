@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./Features/Auth/Login/Login";
+import { Restaurant } from "./Features/Restaurant/Restaurant";
 import { SignUp } from "./Features/Auth/SignUp/SignUp";
 import "./App.css";
 import { Customer } from "./Features/Cutomer/Customer.view";
@@ -7,8 +8,7 @@ import { Driver } from "./Features/Driver/Driver.view";
 import NotFound from "./Features/Error/NotFound.view";
 
 
-function App()
-{
+function App() {
   return (
     <BrowserRouter>
       <Routes>
@@ -17,11 +17,11 @@ function App()
         <Route path="/signup" element={<SignUp />} />
         <Route path="/customer" element={<Customer />} />
         <Route path="/driver" element={<Driver />} />
+        <Route path="/restaurant" element={<Restaurant />} />
         <Route path="*" element={< NotFound />} />
       </Routes>
     </BrowserRouter>
   );
-
 }
 
 export default App;
