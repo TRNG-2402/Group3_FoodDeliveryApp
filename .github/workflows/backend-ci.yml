@@ -1,0 +1,91 @@
+name: Backend CI
+
+on:
+    push:
+        branches: [main]
+        paths:
+          - 'FoodDeliveryApp/FoodDeliveryApp.API/**'
+          - '.github/workflows/backend-ci.yml'
+    pull_request:
+        branches: [main]
+        paths:
+          - 'FoodDeliveryApp/FoodDeliveryApp.API/**'
+          - '.github/workflows/backend-ci.yml'
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+defaults:
+    run:
+        working-directory: FoodDeliveryApp/FoodDeliveryApp.API
+
+jobs:
+
+    test:
+        name: Test
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v4
+
+          - name: Set up .NET
+            uses: actions/setup-dotnet@v4
+            with:
+                dotnet-version: '10.0.x'
+
+          - name: Restore dependencies
+            run: dotnet restore FoodDeliveryApp/FoodDeliveryApp.sln
+
+          - name: Test
+            run: dotnet test FoodDeliveryApp/FoodDeliveryApp.sln --no-restore --verbosity normal
+
+    build:
+        name: Production build
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v4
+
+          - name: Set up .NET
+            uses: actions/setup-dotnet@v4
+            with:
+                dotnet-version: '10.0.x'
+
+          - name: Restore dependencies
+            run: dotnet restore FoodDeliveryApp/FoodDeliveryApp.API.csproj
+
+          - name: Publish
+            run: dotnet publish FoodDeliveryApp.API/FoodDeliveryApp.API.csproj -c Release --no-restore -o ./publish
+
+    docker:
+        name: Docker image build
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v4
+
+          - name: Log in to Dockerhub
+            uses: docker/login-action@v3
+            with: 
+              username: ${{ vars.DOCKER_HUB_USERNAME }}
+              password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+          - name: Compute image tags
+            id: meta 
+            uses: docker/metadata-action@v5
+            with:
+              images: ${{ vars.DOCKER_HUB_USERNAME }}/fooddeliveryapp-api 
+              tags: | 
+                type=raw, value=latest,enable={{is_default_branch}} 
+                type=sha, format=short
+
+          - name: Build and push to Dockerhub
+            uses: docker/build-push-action@v6
+            with: 
+              context: Week-3/FoodDeliveryApp/FoodDeliveryApp.API
+              push: true 
+              tags: ${{ steps.meta.outputs.tags }}
+              labels: ${{ steps.meta.outputs.labels }}
