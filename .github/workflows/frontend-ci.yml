@@ -70,7 +70,7 @@ jobs:
           - name: Build
             run: npm run build
             env: 
-              VITE_Google_Map_API_Key: ${{ secrets.VITE_Google_Map_API_Key }} 
+              VITE_API_KEY: ${{ secrets.VITE_API_KEY }} 
 
           - name: Upload dist artifact
             uses: actions/upload-artifact@v4

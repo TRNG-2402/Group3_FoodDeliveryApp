@@ -13,7 +13,7 @@ import type { IOrder } from '../../Interfaces/Interfaces';
 
 
 export const Driver = () => {
-    const apikey = import.meta.env.VITE_Google_Map_API_Key;
+    const apikey = import.meta.env.VITE_API_KEY;
     console.log("apikey", apikey);
     const [menu, setMenu] = useState<any>();
     const [driver, setDriver] = useState<any>();
