@@ -34,11 +34,11 @@ jobs:
             with:
                 dotnet-version: '10.0.x'
 
-          #- name: Restore dependencies
-          #  run: dotnet restore FoodDeliveryApp.sln
+          - name: Restore dependencies
+            run: dotnet restore FoodDeliveryApp.API/FoodDeliveryApp.sln
 
-          #- name: Test
-          #  run: dotnet test FoodDeliveryApp.sln --no-restore --verbosity normal
+          - name: Test
+            run: dotnet test FoodDeliveryApp.API/FoodDeliveryApp.sln --no-restore --verbosity normal
 
     build:
         name: Production build
