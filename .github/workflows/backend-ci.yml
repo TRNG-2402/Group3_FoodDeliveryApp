@@ -85,7 +85,7 @@ jobs:
           - name: Build and push to Dockerhub
             uses: docker/build-push-action@v6
             with: 
-              context: Week-3/FoodDeliveryApp/FoodDeliveryApp.API
+              context: FoodDeliveryApp/FoodDeliveryApp.API
               push: true 
               tags: ${{ steps.meta.outputs.tags }}
               labels: ${{ steps.meta.outputs.labels }}
