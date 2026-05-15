@@ -4,12 +4,10 @@ import {
   getAllMenuItems,
   getAllRestaurants,
   getMenuItemsByRestaurantId,
-  getCustomerById,
+  getCustomer,
   postOrder,
-  getOrderByCustomerId,
-  getAllOrders,
-  getRestaurantById
-} from "./Driver";
+  getOrderByCustomerId
+} from "./Customer";
 
 vi.mock("../../services/apiService", () => ({
   apiService: {
@@ -18,7 +16,7 @@ vi.mock("../../services/apiService", () => ({
   }
 }));
 
-describe("Driver API functions", () => {
+describe("Customer API functions", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -73,7 +71,7 @@ describe("Driver API functions", () => {
     expect(apiService.get).toHaveBeenCalledWith("menuitem/restaurant/5");
   });
 
-  it("getCustomerById calls user endpoint", async () => {
+  it("getCustomer calls user endpoint", async () => {
     const mockCustomer = {
       userId: 7,
       name: "Emma"
@@ -81,7 +79,7 @@ describe("Driver API functions", () => {
 
     vi.mocked(apiService.get).mockResolvedValueOnce(mockCustomer);
 
-    const result = await getCustomerById(7);
+    const result = await getCustomer(7);
 
     expect(result).toEqual(mockCustomer);
     expect(apiService.get).toHaveBeenCalledWith("user/7");
@@ -127,35 +125,5 @@ describe("Driver API functions", () => {
 
     expect(result).toEqual(mockOrders);
     expect(apiService.get).toHaveBeenCalledWith("order/customer/3");
-  });
-
-  it("getAllOrders calls order endpoint", async () => {
-    const mockOrders = [
-      {
-        orderId: 1,
-        status: "Pending"
-      }
-    ];
-
-    vi.mocked(apiService.get).mockResolvedValueOnce(mockOrders);
-
-    const result = await getAllOrders();
-
-    expect(result).toEqual(mockOrders);
-    expect(apiService.get).toHaveBeenCalledWith("order");
-  });
-
-  it("getRestaurantById calls restaurant id endpoint", async () => {
-    const mockRestaurant = {
-      restaurantId: 4,
-      name: "Burger House"
-    };
-
-    vi.mocked(apiService.get).mockResolvedValueOnce(mockRestaurant);
-
-    const result = await getRestaurantById(4);
-
-    expect(result).toEqual(mockRestaurant);
-    expect(apiService.get).toHaveBeenCalledWith("restaurant/4");
   });
 });
