@@ -24,6 +24,7 @@ export const SignUp = () => {
         if (validationPassed) api.post("auth/register", body)
             .then((response) => {
                 localStorage.setItem("token", response.data.token);
+                localStorage.setItem("userType", userInfo.userType);
                 if (userInfo.userType === "customer") navigate("/customer");
                 else if (userInfo.userType === "driver") navigate("/driver");
             })
