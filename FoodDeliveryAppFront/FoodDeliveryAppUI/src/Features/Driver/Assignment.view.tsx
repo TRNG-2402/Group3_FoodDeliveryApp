@@ -1,4 +1,5 @@
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react"
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { ConfirmModal } from '../../Components/ConfirmModal/ConfirmModal';
 import { getCustomerById, getOrderByDriverId, getRestaurantById, updateOrder } from "./Driver";
 import type { IOrder } from "../../Interfaces/Interfaces";
 import { Button } from "../../Components/Button/Button";
@@ -18,6 +19,11 @@ export const Assignment = ({ driverId, assignments, setAssignments, setCurrentTa
     const [previousAssignments, setPreviousAssignments] = useState<IOrder[]>([]);
     const [customerAddress, setCustomerAddress] = useState<string>("");
     const [restaurantAddress, setRestaurantAddress] = useState<string>("");
+    const [confirm, setConfirm] = useState({ open: false, title: "", message: "", onConfirm: () => {}, confirmLabel: "Confirm", danger: false });
+
+    const openConfirm = (title: string, message: string, onConfirm: () => void, confirmLabel = "Confirm", danger = false) =>
+        setConfirm({ open: true, title, message, onConfirm, confirmLabel, danger });
+    const closeConfirm = () => setConfirm(c => ({ ...c, open: false }));
 
     useEffect(() => {
         getOrderByDriverId(driverId)
@@ -43,11 +49,15 @@ export const Assignment = ({ driverId, assignments, setAssignments, setCurrentTa
                     <div style={{ border: "1px solid", padding: "5px" }}>Status: {order?.status}</div>
                     <div style={{ border: "1px solid", padding: "5px" }}>Order Pays: ${(order?.total * 0.15).toFixed(2)}</div>
                     <div style={{ display: "flex" }}>
-                        <Button className="buttonOutline" onClick={async () => {
-                            updateOrder(order?.orderId, {
-                                status: "Open", driverId: 1
-                            }).then(() =>
-                                setCurrentTab("OpenOrders"));
+                        <Button className="buttonOutline" onClick={() => {
+                            openConfirm(
+                                "Cancel Delivery",
+                                `Cancel order #${order?.orderId}? It will return to Open status.`,
+                                () => updateOrder(order?.orderId, { status: "Open", driverId: 1 })
+                                    .then(() => setCurrentTab("OpenOrders")),
+                                "Cancel Delivery",
+                                true
+                            );
                         }}>Cancel
                         </Button>
                         <Button className="buttonOutline" onClick={async () => {
@@ -61,10 +71,13 @@ export const Assignment = ({ driverId, assignments, setAssignments, setCurrentTa
                         }}>Details
                         </Button>
                         <Button className="buttonPrimary" onClick={() => {
-                            updateOrder(order?.orderId, {
-                                status: "Delivered", driverId
-                            }).then(() =>
-                                setCurrentTab("OpenOrders"));
+                            openConfirm(
+                                "Complete Delivery",
+                                `Mark order #${order?.orderId} as delivered?`,
+                                () => updateOrder(order?.orderId, { status: "Delivered", driverId })
+                                    .then(() => setCurrentTab("OpenOrders")),
+                                "Complete Delivery"
+                            );
                         }}>Complete Delivery
                         </Button>
                     </div>
@@ -86,5 +99,14 @@ export const Assignment = ({ driverId, assignments, setAssignments, setCurrentTa
                     <div style={{ border: "1px solid", padding: "5px" }}>Order Pays: ${(order?.total * 0.15).toFixed(2)}</div>
                 </div>)
         }
+        <ConfirmModal
+            isOpen={confirm.open}
+            title={confirm.title}
+            message={confirm.message}
+            confirmLabel={confirm.confirmLabel}
+            danger={confirm.danger}
+            onConfirm={() => { confirm.onConfirm(); closeConfirm(); }}
+            onCancel={closeConfirm}
+        />
     </div>
 }

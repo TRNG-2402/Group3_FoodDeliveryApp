@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { jwtDecode } from "jwt-decode";
+import { ConfirmModal } from '../../Components/ConfirmModal/ConfirmModal';
 
 import './Driver.style.css';
 import { Button } from '../../Components/Button/Button';
@@ -23,6 +24,11 @@ export const Driver = () => {
     const [restaurantAddress, setRestaurantAddress] = useState<string>("");
     const [renderMap, setRenderMap] = useState<boolean>(false);
     const [currentTab, setCurrentTab] = useState<"OpenOrders" | "Assignments">("OpenOrders");
+    const [confirm, setConfirm] = useState({ open: false, title: "", message: "", onConfirm: () => {}, confirmLabel: "Confirm", danger: false });
+
+    const openConfirm = (title: string, message: string, onConfirm: () => void, confirmLabel = "Confirm", danger = false) =>
+        setConfirm({ open: true, title, message, onConfirm, confirmLabel, danger });
+    const closeConfirm = () => setConfirm(c => ({ ...c, open: false }));
 
     useEffect(() => {
         getAllRestaurants()
@@ -85,7 +91,7 @@ export const Driver = () => {
                     <nav className="nav-links">
                         <div className="nav-item active" onClick={() => { setCurrentTab("OpenOrders") }}>Open Orders</div>
                         <div className="nav-item" onClick={() => { setCurrentTab("Assignments") }}>Assignments</div>
-                        <div className="nav-item" onClick={() => handleLogout()}>Logout</div>
+                        <div className="nav-item" onClick={() => openConfirm("Log Out", "Are you sure you want to log out?", handleLogout, "Log Out", true)}>Logout</div>
                     </nav>
                 </aside>
 
@@ -117,12 +123,13 @@ export const Driver = () => {
                                         setRenderMap(true);
                                     }}>Details</Button>
                                     <Button className="buttonPrimary" onClick={() => {
-                                        console.log("OrderId: ", order?.orderId);
-                                        console.log("CustomerId: ", order?.customerId);
-                                        console.log("DriverId: ", driver?.userId);
-                                        updateOrder(order?.orderId, {
-                                            status: "Delivering", driverId: driver?.userId
-                                        }).then(() => { setCurrentTab("Assignments") });
+                                        openConfirm(
+                                            "Accept Order",
+                                            `Accept order #${order?.orderId}? You will be assigned as the driver.`,
+                                            () => updateOrder(order?.orderId, { status: "Delivering", driverId: driver?.userId })
+                                                .then(() => setCurrentTab("Assignments")),
+                                            "Accept"
+                                        );
                                     }}>Accept</Button>
                                 </div>
                             </div>)
@@ -133,6 +140,15 @@ export const Driver = () => {
                 }
 
             </div>
+            <ConfirmModal
+                isOpen={confirm.open}
+                title={confirm.title}
+                message={confirm.message}
+                confirmLabel={confirm.confirmLabel}
+                danger={confirm.danger}
+                onConfirm={() => { confirm.onConfirm(); closeConfirm(); }}
+                onCancel={closeConfirm}
+            />
         </>
 
     );
