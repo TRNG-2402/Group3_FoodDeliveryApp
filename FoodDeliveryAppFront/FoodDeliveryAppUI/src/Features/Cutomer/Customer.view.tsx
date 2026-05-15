@@ -4,6 +4,7 @@ import { jwtDecode, type JwtPayload } from "jwt-decode";
 import './Customer.style.css';
 import { FoodCard } from '../../Components/FoodCard/FoodCard';
 import { Button } from '../../Components/Button/Button';
+import { ConfirmModal } from '../../Components/ConfirmModal/ConfirmModal';
 import { getAllRestaurants, getCustomer, getMenuItemsByRestaurantId, getOrderByCustomerId, postOrder } from './Customer';
 import type { IMenuItem } from '../../Interfaces/MenuItem';
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +19,11 @@ export const Customer = () => {
     const [restaurant, setRestaurant] = useState<any>();
     const [activeFeature, setActiveFeature] = useState<"menu" | "previous" | "active">("menu");
     const [orders, setOrders] = useState<any>();
+    const [confirm, setConfirm] = useState({ open: false, title: "", message: "", onConfirm: () => {}, confirmLabel: "Confirm", danger: false });
+
+    const openConfirm = (title: string, message: string, onConfirm: () => void, confirmLabel = "Confirm", danger = false) =>
+        setConfirm({ open: true, title, message, onConfirm, confirmLabel, danger });
+    const closeConfirm = () => setConfirm(c => ({ ...c, open: false }));
 
     useEffect(() => {
         getAllRestaurants()
@@ -89,7 +95,7 @@ export const Customer = () => {
                                     setActiveFeature("previous");
                                 })
                         }}>Your Orders</div>
-                        <div className="nav-item" onClick={() => handleLogout()}>Logout</div>
+                        <div className="nav-item" onClick={() => openConfirm("Log Out", "Are you sure you want to log out?", handleLogout, "Log Out", true)}>Logout</div>
                     </nav>
                 </aside>
 
@@ -132,12 +138,15 @@ export const Customer = () => {
                                         customStyle={{margin:"5px"}}
                                         className="buttonPrimary"
                                         onClick={() => {
-                                            setCart([]);
-                                            getMenuItemsByRestaurantId(res?.restaurantId)
-                                                .then(r => {
-                                                    console.log(r)
-                                                    setMenu(r);
-                                                })
+                                            const doSwitch = () => {
+                                                setCart([]);
+                                                getMenuItemsByRestaurantId(res?.restaurantId).then(r => setMenu(r));
+                                            };
+                                            if (cart.length > 0) {
+                                                openConfirm("Switch Restaurant", "Switching restaurants will clear your cart. Continue?", doSwitch, "Switch");
+                                            } else {
+                                                doSwitch();
+                                            }
                                         }}
                                     >{res?.name} {res?.address}</Button>
                                 })
@@ -175,22 +184,24 @@ export const Customer = () => {
                                 Total.................... ${(total * 1.0875 + 3.00).toFixed(2)}
                             </h3>
                             <Button className="buttonPrimary button-small" onClick={() => {
-
-                                const items = cart?.map(c => {
-                                    return {
-                                        menuItemId: c?.menuItemId,
-                                        quantity: c?.quantity,
-                                        unitPrice: c?.price
-                                    }
-                                })
-
-                                postOrder({
-                                    "customerId": customer?.userId,
-                                    "restaurantId": menu[0]?.restaurantId,
-                                    items
-                                })
-                                    .then(r => console.log(r));
-
+                                if (cart.length === 0) return;
+                                openConfirm(
+                                    "Place Order",
+                                    `Place your order for $${(total * 1.0875 + 3.00).toFixed(2)}?`,
+                                    () => {
+                                        const items = cart?.map(c => ({
+                                            menuItemId: c?.menuItemId,
+                                            quantity: c?.quantity,
+                                            unitPrice: c?.price
+                                        }));
+                                        postOrder({
+                                            customerId: customer?.userId,
+                                            restaurantId: menu[0]?.restaurantId,
+                                            items
+                                        }).then(r => console.log(r));
+                                    },
+                                    "Place Order"
+                                );
                             }}>
                                 Order
                             </Button>
@@ -199,6 +210,15 @@ export const Customer = () => {
 
                 }
             </div>
+            <ConfirmModal
+                isOpen={confirm.open}
+                title={confirm.title}
+                message={confirm.message}
+                confirmLabel={confirm.confirmLabel}
+                danger={confirm.danger}
+                onConfirm={() => { confirm.onConfirm(); closeConfirm(); }}
+                onCancel={closeConfirm}
+            />
         </>
 
     );
