@@ -56,7 +56,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("FoodDeliveryApp", policy => 
         policy.WithOrigins(
                 "http://localhost:5173",
-                "http://localhost:3000"
+                "http://localhost:3000",
+                "http://localhost:5070",
+                "http://localhost:8080"
                 )
             .AllowAnyHeader()
             .AllowAnyMethod());
@@ -72,11 +74,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors("FoodDeliveryApp");
 
