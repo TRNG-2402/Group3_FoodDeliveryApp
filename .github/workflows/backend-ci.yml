@@ -44,6 +44,10 @@ jobs:
         name: Production build
         needs: test
         runs-on: ubuntu-latest
+       
+        env:
+          ConnectionStrings__DefaultConnection: ${{ secrets.DB_CONNECTION_STRING }}
+
         steps:
           - name: Checkout repository
             uses: actions/checkout@v4
