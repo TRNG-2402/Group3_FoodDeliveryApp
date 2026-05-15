@@ -14,7 +14,7 @@ interface driver {
 }
 
 export const Assignment = ({ driverId, assignments, setAssignments, setCurrentTab }: driver) => {
-    const apikey = import.meta.env.VITE_Google_Map_API_Key;
+    const apikey = import.meta.env.VITE_API_KEY;
 
     const [previousAssignments, setPreviousAssignments] = useState<IOrder[]>([]);
     const [customerAddress, setCustomerAddress] = useState<string>("");
