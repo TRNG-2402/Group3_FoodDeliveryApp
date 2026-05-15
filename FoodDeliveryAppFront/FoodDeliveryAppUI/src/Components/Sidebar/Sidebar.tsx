@@ -1,13 +1,10 @@
 import {
     MdFastfood,
     MdDashboard,
-    MdRestaurant,
-    MdDeliveryDining,
 } from "react-icons/md";
 
-import { FaShoppingBag, FaUserCircle } from "react-icons/fa";
+import { FaShoppingBag } from "react-icons/fa";
 
-import { IoSettingsSharp } from "react-icons/io5";
 
 import { Link } from "react-router-dom";
 
