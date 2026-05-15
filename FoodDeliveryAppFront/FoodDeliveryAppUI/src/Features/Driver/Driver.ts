@@ -25,10 +25,18 @@ export const getOrderByCustomerId = async (id: number) => {
     return await apiService.get(`order/customer/${id}`);
 }
 
+export const getOrderByDriverId = async (id: number) => {
+    return await apiService.get(`order/driver/${id}`);
+}
+
 export const getAllOrders = async () => {
     return await apiService.get(`order`);
 }
 
 export const getRestaurantById = async (id: number) => {
     return await apiService.get(`restaurant/${id}`);
+}
+
+export const updateOrder = async (orderId: number, body: any) => {
+    return await apiService.put(`order/${orderId}`, body);
 }
