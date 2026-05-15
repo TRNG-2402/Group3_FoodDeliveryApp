@@ -114,7 +114,6 @@ export const Driver = () => {
 
                                         setRestaurantAddress(restaurantAddress);
                                         setCustomerAddress(customerAddress);
-                                        setRenderMap(false);
                                         setRenderMap(true);
                                     }}>Details</Button>
                                     <Button className="buttonPrimary" onClick={() => {
@@ -129,7 +128,7 @@ export const Driver = () => {
                             </div>)
                         }
                     </div>
-                        {renderMap && <MapComponent customer={customerAddress} restaurant={restaurantAddress} apikey={apikey} />}
+                         <MapComponent customer={customerAddress} restaurant={restaurantAddress} apikey={apikey} />
                     </>
                 }
 

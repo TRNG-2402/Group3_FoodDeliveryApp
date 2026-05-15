@@ -18,7 +18,6 @@ export const Assignment = ({ driverId, assignments, setAssignments, setCurrentTa
     const [previousAssignments, setPreviousAssignments] = useState<IOrder[]>([]);
     const [customerAddress, setCustomerAddress] = useState<string>("");
     const [restaurantAddress, setRestaurantAddress] = useState<string>("");
-    const [renderMap, setRenderMap] = useState<boolean>(false);
 
     useEffect(() => {
         getOrderByDriverId(driverId)
@@ -59,7 +58,6 @@ export const Assignment = ({ driverId, assignments, setAssignments, setCurrentTa
 
                             setRestaurantAddress(restaurantAddress);
                             setCustomerAddress(customerAddress);
-                            setRenderMap(true);
                         }}>Details
                         </Button>
                         <Button className="buttonPrimary" onClick={() => {
@@ -74,7 +72,7 @@ export const Assignment = ({ driverId, assignments, setAssignments, setCurrentTa
             }
             )
         }
-        {renderMap && <MapComponent customer={customerAddress} restaurant={restaurantAddress} apikey={apikey} />}
+        <MapComponent customer={customerAddress} restaurant={restaurantAddress} apikey={apikey} />
 
         <h3>Previous Assignments</h3>
         {

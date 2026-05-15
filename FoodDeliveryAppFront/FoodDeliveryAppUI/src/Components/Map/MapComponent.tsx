@@ -11,10 +11,18 @@ interface IAddresses {
   apikey: string;
 }
 
-export const MapComponent = ({customer, restaurant, apikey}: IAddresses) => {
+export const MapComponent = ({ customer, restaurant, apikey }: IAddresses) => {
   const [encodedPath, setEncodedPath] = useState<string>("");
-  // const [address1, setAddress1] = useState<string>();
-  // const [address2, setAddress2] = useState<string>();
+  const [address1, setAddress1] = useState<string>();
+  const [address2, setAddress2] = useState<string>();
+
+  useEffect(() => {
+    setAddress1(customer);
+    setAddress2(restaurant);
+  }, [customer, restaurant])
+
+  console.log("Map:", customer, restaurant)
+  console.log("Map: ", address1, address2)
 
   const key = apikey;
 
@@ -35,12 +43,12 @@ export const MapComponent = ({customer, restaurant, apikey}: IAddresses) => {
 
   useEffect(() => {
     getEncodedPolyline();
-  },[])
+  }, [address1, address2])
 
 
   const getEncodedPolyline = async () => {
-    console.log(customer, restaurant)
-    const response = await fetch(`https://geocode.googleapis.com/v4/geocode/address/${customer}`
+    console.log("Map", customer, restaurant)
+    const response = await fetch(`https://geocode.googleapis.com/v4/geocode/address/${address1}`
       , {
         method: "GET", // Specify the method
         headers: {
@@ -49,7 +57,7 @@ export const MapComponent = ({customer, restaurant, apikey}: IAddresses) => {
         },
       })
 
-    const response2 = await fetch(`https://geocode.googleapis.com/v4/geocode/address/${restaurant}`
+    const response2 = await fetch(`https://geocode.googleapis.com/v4/geocode/address/${address2}`
       , {
         method: "GET", // Specify the method
         headers: {
