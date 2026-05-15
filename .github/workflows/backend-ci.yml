@@ -4,12 +4,12 @@ on:
     push:
         branches: [main]
         paths:
-          - 'FoodDeliveryApp/FoodDeliveryApp.API/**'
+          - 'FoodDeliveryApp/**'
           - '.github/workflows/backend-ci.yml'
     pull_request:
         branches: [main]
         paths:
-          - 'FoodDeliveryApp/FoodDeliveryApp.API/**'
+          - 'FoodDeliveryApp/**'
           - '.github/workflows/backend-ci.yml'
     workflow_dispatch:
 
@@ -18,7 +18,7 @@ permissions:
 
 defaults:
     run:
-        working-directory: FoodDeliveryApp/FoodDeliveryApp.API
+        working-directory: FoodDeliveryApp
 
 jobs:
 
