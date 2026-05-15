@@ -45,7 +45,7 @@ public class OrderController : ControllerBase
             RestaurantId = dto.RestaurantId,
             OrderDate = DateTime.UtcNow,
             Status = "Pending",
-            DriverId = 0,
+            DriverId = 1,
             OrderItems = dto.Items.Select(i => new OrderItem
             {
                 MenuItemId = i.MenuItemId,
