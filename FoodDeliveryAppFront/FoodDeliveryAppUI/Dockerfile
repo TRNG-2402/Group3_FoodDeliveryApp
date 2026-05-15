@@ -11,6 +11,10 @@ RUN npm install
 # Copy the rest of the frontend source
 COPY . .
 
+# Enviromental Variables
+ARG VITE_API_KEY
+ENV VITE_API_KEY=$VITE_API_KEY
+
 # Build Vite app
 RUN npm run build
 
